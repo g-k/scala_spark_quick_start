@@ -42,5 +42,44 @@ val totalEvens = Range(1,10)
 
 - failure and empty states are represented with Option types, and are handled safely with for and flatMap
 
+Perhaps we have a list of people, and we wish to transform the data:
+```scala
+val candidates = List( ("Hillary Clinton", "68"), ("Bernie Sanders", "74"), ("Donald Trump", ""), ("Ted Cruz","45"), ("Marco Rubio", "44"))
+
+//naively, we might apply a mapping:
+val newCandidates = candidates.map{  cn => (cn._1 , cn._2.toInt) };
+//but encounter an error: java.lang.NumberFormatException: For input string: ""
+```
+
+so we can use a type to represent the success or failure of our operation:
+
+```scala
+  def parseCandidate(name:String, age:String) : Option[(String,Int)]  = {
+    try {
+      Some( (name, age.toInt)  ) //return the candidate with the parsed age
+    } catch  {
+      case _ : Throwable => None // returns and empty Option
+    }
+  }
+
+```
+
+now if we perform our mapping, we get:
+
+```scala 
+candidates.map( cn => parseCandidate(cn._1,cn._2))
+//returns List(Some((Hillary Clinton,68)), Some((Bernie Sanders,74)), None, Some((Ted Cruz,45)), Some((Marco Rubio,44)))
+```
+
+Which is definitely an improvement because the offending candidate has been excised.
+But a problem remains: we don't want "Some" objects - we want the names and ages.
+Furthermore, its bothersome to filter out the empty "None" object. Fortunately we have the "flatMap" function which will releive us of this burden:
+
+```scala
+candidates.flatMap( cn => parseCandidate(cn._1,cn._2))
+//returns  List((Hillary Clinton,68), (Bernie Sanders,74), (Ted Cruz,45), (Marco Rubio,44))
+```
+
+The 'flatMap' function is [useful in many other ways](http://twitter.github.io/effectivescala/#Functional programming-`flatMap`), but I won't go into that right now.
 
 
