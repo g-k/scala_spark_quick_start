@@ -1,14 +1,14 @@
-###Scala Quick Start
+#Scala Quick Start
 
-#About Scala
+##About Scala
 
 - Compiled language that runs on the JVM
 - uses type inference. This means all variables has a definite type - (but you don't neccsarily need to declare them)
 - supports interop with Java and Clojure
 
-#Scala Basics
+##Scala Basics
 
-- variables can be declared with as mutable or immutable using the "var" or "val" keywords
+###Variables can be declared with as mutable or immutable using the "var" or "val" keywords
 
 ```scala
 var count = 1
@@ -18,15 +18,16 @@ val age = 39
 age = age + 1 //error: reassignment to val
 ```
 
-- expression based rather than statement based. This means that every piece of code returns a value
+###Expression based rather than statement based. This means that every piece of code returns a value
 
 ```scala
 val count = 3
 val evenOrOdd = if (count % 2 == 0) { "even" } else  { "odd" } // equals to the string "odd"
 ```
 
-- traditional imperitive flow control works as expected - if, for, while, switch
-- also supports functional methods like map, filter, reduce as well as pattern matching
+###supports functional methods like map, filter, reduce as well as pattern matching
+
+- (also traditional imperitive flow control works as expected - if, for, while, switch)
 
 ```scala
 def isEven(x:Int) = x % 2 == 0
@@ -40,7 +41,7 @@ val totalEvens = Range(1,10)
   .reduce(_+_)  // "_" is a place holder for the collection elements being reduced
 ```
 
-- failure and empty states are represented with Option types, and are handled safely with for and flatMap
+###failure and empty states are represented with Option types, and are handled safely with for and flatMap
 
 Perhaps we have a list of people, and we wish to transform the data:
 ```scala
@@ -82,4 +83,11 @@ candidates.flatMap( cn => parseCandidate(cn._1,cn._2))
 
 The 'flatMap' function is [useful in many other ways](http://twitter.github.io/effectivescala/#Functional programming-`flatMap`), but I won't go into that right now.
 
+##Using scala in the REPL
+
+We'll be using the scala REPL in one of three ways:
+
+1. Standalone (just type "scala")
+2. SBT console (running "sbt console" will fire up the REPL with all you dependencies and classes available for import)
+3. Spark Shell (executing the spark-shell gives you a full interactive REPL that can perform any spark function)
 
