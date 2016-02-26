@@ -109,3 +109,29 @@ Welcome to
 scala>
 ```
 
+First, we're going to load some JSON data.
+
+```scala
+scala> val iceCream = sqlContext.read.json("/Users/jsnavely/project/scala_spark_quickstart/icecream.json")
+iceCream: org.apache.spark.sql.DataFrame = [Name: string, Preference: string]
+```
+
+In our example, we read from a single file that contains JSON element per line. In production, you could use this 
+same command to read petabytes of data from thousands of files stored on HDFS or S3.
+
+Spark builds a dataframe, and infers a schema using the keys in the JSON. We're now ready to do some aggregate opperations.
+
+To find the most popular flavors:
+
+```scala
+scala> iceCream.groupBy("preference").count().show()
++------------+-----+
+|  preference|count|
++------------+-----+
+|  Strawberry|    2|
+|     Vanilla|    2|
+|Butter Pecan|    1|
+|   Chocolate|    2|
++------------+-----+
+```
+
