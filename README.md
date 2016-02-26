@@ -91,8 +91,8 @@ We'll be using the scala REPL in one of three ways:
 2. SBT console (running "sbt console" will fire up the REPL with all you dependencies and classes available for import)
 3. Spark Shell (executing the spark-shell gives you a full interactive REPL that can perform any spark function)
 
-Let's start with the last one because its the most interesting. To experiment with Spark, (download a prebuilt package)[https://spark.apache.org/downloads.html].
-As of February 2016, Spark 1.6 is the latest version supported by (Amazon EMR)[https://aws.amazon.com/elasticmapreduce/], so that's what we'll use.
+Let's start with the last one because its the most interesting. To experiment with Spark, [download a prebuilt package](https://spark.apache.org/downloads.html).
+As of February 2016, Spark 1.6 is the latest version supported by [Amazon EMR](https://aws.amazon.com/elasticmapreduce/), so that's what we'll use.
 
 Once you've unpacked it, go to the spark directory and start the shell:
 
